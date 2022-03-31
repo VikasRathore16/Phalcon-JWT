@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql-server
--- Generation Time: Mar 31, 2022 at 09:44 AM
+-- Generation Time: Mar 31, 2022 at 01:26 PM
 -- Server version: 8.0.19
 -- PHP Version: 7.4.1
 
@@ -77,7 +77,8 @@ INSERT INTO `orders` (`order_id`, `customer_name`, `customer_address`, `zipcode`
 (12, 'Vikas', 'Jankipuram', '226010', 'T-Shirt ', 2),
 (13, 'Vikas', 'Jankipuram', '226010', 'T-Shirt ', 2),
 (14, 'Vikas', 'Jankipuram', '92347', 'T-Shirt ', 2),
-(15, 'Vikas', 'Jankipuram', '226010', 'Mobilenew', 2);
+(15, 'Vikas', 'Jankipuram', '226010', 'Mobilenew', 2),
+(16, 'Vikas', 'Jankipuram', '92347', 'Mobile', 2);
 
 -- --------------------------------------------------------
 
@@ -105,8 +106,7 @@ INSERT INTO `permissions` (`id`, `role`, `component`, `action`) VALUES
 (75, 'manager', 'index', 'productList'),
 (76, 'manager', 'index', 'orderList'),
 (77, 'manager', 'index', 'index'),
-(78, 'guest', 'index', 'productList'),
-(79, 'guest', 'index', 'index');
+(78, 'guest', 'index', 'productList');
 
 -- --------------------------------------------------------
 
@@ -154,7 +154,8 @@ INSERT INTO `roles` (`role_id`, `role`) VALUES
 (7, 'admin'),
 (8, 'manager'),
 (9, 'guest'),
-(10, 'manager');
+(10, 'manager'),
+(11, 'user');
 
 -- --------------------------------------------------------
 
@@ -175,7 +176,30 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `title_optimization`, `default_price`, `default_stock`, `default_zipcode`) VALUES
-(1, 'Y', 100, 100, 226010);
+(1, 'N', 100, 100, 226010);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` int NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `jwt` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `jwt`) VALUES
+(1, 'admin', 'admin@gmail.com', 'admin', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImN0eSI6ImFwcGxpY2F0aW9uXC9qc29uIn0.eyJhdWQiOlsiaHR0cHM6XC9cL3RhcmdldC5waGFsY29uLmlvIl0sImV4cCI6MTY0ODgxMzc5MCwianRpIjoiYWJjZDEyMzQ1Njc4OSIsImlhdCI6MTY0ODcyNzM5MCwiaXNzIjoiaHR0cHM6XC9cL3BoYWxjb24uaW8iLCJuYmYiOjE2NDg3MjczMzAsInN1YiI6ImFkbWluIn0.dG2etqTbRfnI2V0zF08MQCGgwdk7CPtRTO2edbDSFFcTwq0AafZjRuUPFhOmv_odPph_yCWaF-Z4mHbeAq1sNg'),
+(2, 'vikas', 'vikas@cedcoss.com', '123', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImN0eSI6ImFwcGxpY2F0aW9uXC9qc29uIn0.eyJhdWQiOlsiaHR0cHM6XC9cL3RhcmdldC5waGFsY29uLmlvIl0sImV4cCI6MTY0ODgxNTUyMywianRpIjoiYWJjZDEyMzQ1Njc4OSIsImlhdCI6MTY0ODcyOTEyMywiaXNzIjoiaHR0cHM6XC9cL3BoYWxjb24uaW8iLCJuYmYiOjE2NDg3MjkwNjMsInN1YiI6InVzZXIifQ.b9v1WdZOLozSXazW9fwkLODayMpsjHAPeRADyaci9eqEVI1QMrx3O5o48k3xiMoMIdzhnlg0HLmeyZiGiRlOHA'),
+(3, 'admin@gmail.com', 'vikas@cedcoss.com', '123', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImN0eSI6ImFwcGxpY2F0aW9uXC9qc29uIn0.eyJhdWQiOlsiaHR0cHM6XC9cL3RhcmdldC5waGFsY29uLmlvIl0sImV4cCI6MTY0ODgxNjczMSwianRpIjoiYWJjZDEyMzQ1Njc4OSIsImlhdCI6MTY0ODczMDMzMSwiaXNzIjoiaHR0cHM6XC9cL3BoYWxjb24uaW8iLCJuYmYiOjE2NDg3MzAyNzEsInN1YiI6Im1hbmFnZXIifQ.FwMQ8qZ6vzL2BzDzb6xor0KBJzpflNI_lPCUP-Sr33ho0eWRb08dhSLWE0s43oSx9oct66yMLUCRVyB34lDdug');
 
 --
 -- Indexes for dumped tables
@@ -218,6 +242,12 @@ ALTER TABLE `settings`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -225,13 +255,13 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `components`
 --
 ALTER TABLE `components`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -243,13 +273,19 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+  MODIFY `product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `role_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `role_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
