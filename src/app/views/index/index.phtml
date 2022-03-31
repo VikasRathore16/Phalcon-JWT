@@ -1,0 +1,56 @@
+<?php
+
+echo Phalcon\Version::get();
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <nav class="header">
+
+
+        <div class="col-3 btn text-center p-3 border-danger  h4 mx-5 border mt-5">
+            <?php echo $this->tag->linkTo('index/productList?bearer=', 'Products List') ?>
+        </div>
+        <div class="col-3 btn text-center p-3 border-danger  h4 mx-5 border mt-5">
+            <?php echo $this->tag->linkTo('index/addProduct?bearer=', 'Product Add') ?>
+        </div>
+        <div class="col-3 btn text-center p-3 border-danger  h4 mx-5 border mt-5">
+            <?php echo $this->tag->linkTo('index/orderList?bearer=', 'Orders List') ?>
+        </div>
+
+        <div class="col-3 btn text-center p-3 border-danger  h4 mx-5 border mt-5">
+            <?php echo $this->tag->linkTo('index/addOrder?bearer=', 'Order Add') ?>
+
+        </div>
+        <div class="col-3 btn text-center p-3 border-danger  h4 mx-5 border mt-5">
+            <?php echo $this->tag->linkTo('index/settings?bearer=', 'Settings') ?>
+
+        </div>
+        <div class="col-3 btn text-center p-3 border-danger  h4 mx-5 border mt-5">
+            <?php echo $this->tag->linkTo('acl?bearer=', 'Acl') ?>
+
+        </div>
+        <div class="col-3 btn text-center p-3 border-danger  h4 mx-5 border mt-5">
+            <?php echo $this->tag->linkTo('acl/data?bearer=', 'Permissions') ?>
+
+        </div>
+        <div class="col-3 btn text-center p-3 border-danger  h4 mx-5 border mt-5">
+            <?php echo $this->tag->linkTo('user/addUser?bearer=', 'Add User') ?>
+
+        </div>
+
+
+    </nav>
+</body>
+
+</html>
