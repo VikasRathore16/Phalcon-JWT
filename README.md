@@ -1,0 +1,13 @@
+# Phalcon-JWT
+
+admin Token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImN0eSI6ImFwcGxpY2F0aW9uXC9qc29uIn0.eyJhdWQiOlsiaHR0cHM6XC9cL3RhcmdldC5waGFsY29uLmlvIl0sImV4cCI6MTY0ODgxMzc5MCwianRpIjoiYWJjZDEyMzQ1Njc4OSIsImlhdCI6MTY0ODcyNzM5MCwiaXNzIjoiaHR0cHM6XC9cL3BoYWxjb24uaW8iLCJuYmYiOjE2NDg3MjczMzAsInN1YiI6ImFkbWluIn0.dG2etqTbRfnI2V0zF08MQCGgwdk7CPtRTO2edbDSFFcTwq0AafZjRuUPFhOmv_odPph_yCWaF-Z4mHbeAq1sNg
+
+database file = src/app/db/events.sql
+
+for Phalcon acl first run url
+
+http://localhost:8080/secure for acl.cache
+
+then run
+
+http://localhost:8080/?bearer=admin_token
