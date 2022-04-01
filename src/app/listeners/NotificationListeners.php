@@ -2,9 +2,13 @@
 
 namespace App\Listeners;
 
+require APP_PATH . '/library/vendor/autoload.php';
+
 use Phalcon\Di\Injectable;
 use Phalcon\Events\Event;
-use Phalcon\Security\JWT\Token\Parser;
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+
 
 class NotificationListeners extends Injectable
 {
@@ -45,18 +49,21 @@ class NotificationListeners extends Injectable
         $aclFile = APP_PATH . '/security/acl.cache';
         if (true === is_file($aclFile)) {
             $acl = unserialize(file_get_contents($aclFile));
-            $bearer = $application->request->get('bearer')??'invalidToken';
+            $bearer = $application->request->get('bearer') ?? 'invalidToken';
             $controller = $application->router->getControllerName() ?? 'index';
             $action = $application->router->getActionName() ?? 'index';
-            try {
-                $parser = new Parser();
-                $role = $parser->parse($bearer)->getClaims()->getPayload()['sub'];
-                // die;
 
+            try {
+
+                $key = "example_key";
+                $decoded = JWT::decode($bearer, new Key($key, 'HS256'));
+                $decoded_array = (array) $decoded;
+                $role = $decoded_array['role'];
             } catch (\Exception $e) {
                 echo "Try with accessable token please !";
                 die;
             }
+
             if (!$role || true !== $acl->isAllowed($role, $controller, $action)) {
 
                 echo '<h2>Access denied :(</h2>';

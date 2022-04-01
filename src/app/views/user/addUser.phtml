@@ -1,6 +1,8 @@
 <?php
 
-print_r($post);
+// print_r($encode);
+// echo"<br>";
+// print_r($decode);
 
 ?>
 <!DOCTYPE html>
@@ -27,14 +29,7 @@ print_r($post);
         <label for="email" class='label col-2 mx-5'>Username</label>
         <?php echo $this->tag->textField(['username', 'class' => 'form-control col-6']) ?>
     </p>
-    <p class="row">
-        <label for="email" class='label col-2 mx-5'>Email</label>
-        <?php echo $this->tag->textField(['email', 'class' => 'form-control col-6']) ?>
-    </p>
-    <p class="row">
-        <label for="email" class='label col-2 mx-5'>Password</label>
-        <?php echo $this->tag->textField(['password', 'class' => 'form-control col-6']) ?>
-    </p>
+   
     <p class="row">
         <label for="roles" class='label col-2 mx-5'>Roles</label>
         <?php
